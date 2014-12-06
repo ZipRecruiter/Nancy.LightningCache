@@ -11,6 +11,7 @@ namespace Nancy.LightningCache.Projection
     {
         public readonly string OldResponseOutput;
 
+        public readonly DateTime Created;
         public readonly DateTime Expiration;
 
         public CachedResponse(SerializableResponse response)
@@ -21,6 +22,7 @@ namespace Nancy.LightningCache.Projection
             OldResponseOutput = response.Contents;
             Contents = GetContents(this.OldResponseOutput);
             Expiration = response.Expiration;
+            Created = response.Created;
             
             Headers["X-Nancy-LightningCache-Expiration"] = response.Expiration.ToString(CultureInfo.InvariantCulture);
         }

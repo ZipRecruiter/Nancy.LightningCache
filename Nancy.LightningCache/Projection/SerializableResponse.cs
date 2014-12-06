@@ -15,9 +15,12 @@ namespace Nancy.LightningCache.Projection
         {
         }
 
-        public SerializableResponse(Response response, DateTime expiration)
+        public SerializableResponse(Response response, DateTime expiration) : this(response, expiration, DateTime.Now) {}
+
+        public SerializableResponse(Response response, DateTime expiration, DateTime created)
         {
             this.Expiration = expiration;
+            this.Created = created;
             this.ContentType = response.ContentType;
             this.Headers = response.Headers;
             this.StatusCode = response.StatusCode;
@@ -33,5 +36,6 @@ namespace Nancy.LightningCache.Projection
         public HttpStatusCode StatusCode { get; set; }
         public string Contents { get; set; }
         public DateTime Expiration { get; set; }
+        public DateTime Created { get; set; }
     }
 }
